@@ -1,0 +1,60 @@
+-- CATEGORÍAS
+INSERT INTO categorias (id, nombre) VALUES
+(1, 'Electrónicos'),
+(2, 'Ropa'),
+(3, 'Hogar'),
+(4, 'Deportes');
+
+-- PROVEEDORES
+INSERT INTO proveedores (id, nombre, contacto, telefono) VALUES
+(1, 'TechCorp', 'Carlos Méndez', '3001234567'),
+(2, 'ModaTotal', 'Ana López', '3109876543'),
+(3, 'HogarExpress', 'Pedro Sánchez', '3205558899'),
+(4, 'DeportesMax', 'Laura García', '3157773322');
+
+-- PRODUCTOS
+INSERT INTO productos (id, nombre, descripcion, precio, stock, categoria_id, proveedor_id) VALUES
+(1, 'iPhone 15 Pro', '256GB, Titanio, Cámara 48MP', 1299.99, 25, 1, 1),
+(2, 'Samsung Galaxy S24', '512GB, Pantalla Dynamic AMOLED', 1099.99, 18, 1, 1),
+(3, 'MacBook Air M3', '13.6", 8GB RAM, 256GB SSD', 1499.99, 12, 1, 1),
+(4, 'Camisa Polo Classic', 'Algodón 100%, Tallas S-XXL', 45.99, 50, 2, 2),
+(5, 'Jeans Slim Fit', 'Denim elastizado, Color azul', 79.99, 30, 2, 2),
+(6, 'Sofá 3 Plazas', 'Tela resistente, Color gris', 899.99, 8, 3, 3),
+(7, 'Lámpara LED', 'RGB, Control remoto, 15W', 89.99, 40, 3, 3),
+(8, 'Balón Fútbol', 'Tamaño 5, Oficial FIFA', 29.99, 60, 4, 4),
+(9, 'Raqueta Tenis', 'Graphite, Peso 300g', 199.99, 15, 4, 4);
+
+-- CLIENTES
+INSERT INTO clientes (id, nombre, email, telefono, ciudad, fecha_registro) VALUES
+(1, 'María González', 'maria@email.com', '3001112233', 'Bogotá', CURRENT_DATE),
+(2, 'Carlos Rodríguez', 'carlos@email.com', '3104445566', 'Medellín', CURRENT_DATE),
+(3, 'Ana Martínez', 'ana@email.com', '3207778899', 'Cali', CURRENT_DATE),
+(4, 'Juan Pérez', 'juan@email.com', '3159990011', 'Bogotá', CURRENT_DATE),
+(5, 'Laura Díaz', 'laura@email.com', '3002223344', 'Medellín', CURRENT_DATE);
+
+-- EMPLEADOS
+INSERT INTO empleados (id, nombre, email, rol, fecha_contratacion) VALUES
+(1, 'Sofia Castro', 'sofia@tienda.com', 'Vendedor', '2023-01-15'),
+(2, 'Miguel Torres', 'miguel@tienda.com', 'Gerente', '2022-03-10'),
+(3, 'Catalina Rojas', 'catalina@tienda.com', 'Cajero', '2023-06-20'),
+(4, 'Andrés López', 'andres@tienda.com', 'Vendedor', '2023-02-28');
+
+-- VENTAS (con fechas realistas de los últimos días)
+INSERT INTO ventas (id, cliente_id, empleado_id, fecha, total, estado) VALUES
+(1, 1, 1, date('now', '-5 days'), 1349.98, 'completada'),
+(2, 2, 4, date('now', '-3 days'), 1099.99, 'completada'),
+(3, 3, 1, date('now', '-10 days'), 1549.98, 'completada'),
+(4, 4, 4, date('now', '-1 days'), 125.98, 'completada'),
+(5, 5, 1, date('now', '-15 days'), 229.97, 'completada');
+
+-- DETALLES_VENTA
+INSERT INTO detalles_venta (id, venta_id, producto_id, cantidad, precio_unitario) VALUES
+(1, 1, 1, 1, 1299.99),  -- Venta 1: 1 iPhone
+(2, 1, 4, 1, 49.99),    -- Venta 1: 1 Camisa Polo
+(3, 2, 2, 1, 1099.99),  -- Venta 2: 1 Samsung Galaxy
+(4, 3, 3, 1, 1499.99),  -- Venta 3: 1 MacBook Air
+(5, 3, 9, 1, 49.99),    -- Venta 3: 1 Raqueta Tenis
+(6, 4, 4, 2, 45.99),    -- Venta 4: 2 Camisas Polo
+(7, 4, 5, 1, 79.99),    -- Venta 4: 1 Jeans
+(8, 5, 8, 2, 29.99),    -- Venta 5: 2 Balones
+(9, 5, 9, 1, 199.99);   -- Venta 5: 1 Raqueta Tenis

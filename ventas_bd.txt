@@ -1,0 +1,66 @@
+// Esquema Base de Datos Ventas - Agente IA
+// Generado desde SQLite
+
+Table categorias {
+  id integer [primary key]
+  nombre varchar [not null, unique]
+}
+
+Table proveedores {
+  id integer [primary key]
+  nombre varchar [not null]
+  contacto varchar
+  telefono varchar
+}
+
+Table productos {
+  id integer [primary key]
+  nombre varchar [not null]
+  descripcion text
+  precio decimal [not null]
+  stock integer [default: 0]
+  categoria_id integer
+  proveedor_id integer
+}
+
+Table clientes {
+  id integer [primary key]
+  nombre varchar [not null]
+  email varchar [unique]
+  telefono varchar
+  ciudad varchar
+  fecha_registro date [default: `CURRENT_DATE`]
+}
+
+Table empleados {
+  id integer [primary key]
+  nombre varchar [not null]
+  email varchar [unique]
+  rol varchar
+  fecha_contratacion date [default: `CURRENT_DATE`]
+}
+
+Table ventas {
+  id integer [primary key]
+  cliente_id integer [not null]
+  empleado_id integer
+  fecha date [not null]
+  total decimal [not null]
+  estado varchar [default: 'completada']
+}
+
+Table detalles_venta {
+  id integer [primary key]
+  venta_id integer [not null]
+  producto_id integer [not null]
+  cantidad integer [not null]
+  precio_unitario decimal [not null]
+}
+
+// Relaciones
+Ref: productos.categoria_id > categorias.id
+Ref: productos.proveedor_id > proveedores.id
+Ref: ventas.cliente_id > clientes.id
+Ref: ventas.empleado_id > empleados.id
+Ref: detalles_venta.venta_id > ventas.id
+Ref: detalles_venta.producto_id > productos.id
